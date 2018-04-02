@@ -39,37 +39,27 @@
             android:text="Pré-enregistrer vos messages et envoyez-les sans les réécrire ! " />
     </LinearLayout>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.25">
+        android:layout_height="wrap_content">
 
         <Button
             android:id="@+id/listeMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:background="@color/colorWhite"
             android:textColor="@color/colorGreen"
             android:text="Message pré-enregistrée"/>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.25">
-
-
 
         <Button
             android:id="@+id/creerMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:gravity="center"
             android:background="@color/colorGreen"
             android:textColor="@color/colorWhite"
             android:text="Créer votre message"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 </LinearLayout>
