@@ -2,13 +2,10 @@ package com.sendmessage.sendmessage;
 
 import android.Manifest;
 import android.content.ContentResolver;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Build;
 import android.provider.ContactsContract;
-import android.renderscript.Sampler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,11 +13,11 @@ import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.sendmessage.sendmessage.bo.Contact;
 
 import java.util.ArrayList;
 import java.util.List;

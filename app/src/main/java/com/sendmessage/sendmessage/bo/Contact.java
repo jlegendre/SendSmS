@@ -1,4 +1,4 @@
-package com.sendmessage.sendmessage;
+package com.sendmessage.sendmessage.bo;
 
 import android.os.Parcel;
 import android.os.Parcelable;
