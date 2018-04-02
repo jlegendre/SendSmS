@@ -54,9 +54,8 @@ public class PhoneContactActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Contact contact = (Contact) parent.getItemAtPosition(position);
 
-                ImageView validate = parent.findViewById(R.id.validate);
+                ImageView validate = view.findViewById(R.id.validate);
 
-                Log.i("test", "coucou");
                 if (contactList.contains(contact)) {
                     contactList.remove(contact);
                     validate.setVisibility(View.INVISIBLE);
