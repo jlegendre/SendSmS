@@ -5,7 +5,8 @@ public class MessageBO {
     private int id;
     private String contenu;
 
-
+    public MessageBO() {
+    }
 
     public MessageBO(int id, String contenu) {
         this.id = id;
