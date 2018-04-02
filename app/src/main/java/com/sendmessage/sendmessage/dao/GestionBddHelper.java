@@ -1,8 +1,10 @@
-package com.sendmessage.sendmessage;
+package com.sendmessage.sendmessage.dao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.sendmessage.sendmessage.dao.MessageContract;
 
 /**
  * Created by lbouvet on 26/01/2018.

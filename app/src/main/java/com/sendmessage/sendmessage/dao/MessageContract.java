@@ -1,4 +1,4 @@
-package com.sendmessage.sendmessage;
+package com.sendmessage.sendmessage.dao;
 
 /**
  * Created by lbouvet on 26/01/2018.

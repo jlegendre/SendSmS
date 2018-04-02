@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.sendmessage.sendmessage.adapter.ContactAdapter;
 import com.sendmessage.sendmessage.bo.Contact;
 
 import java.util.ArrayList;

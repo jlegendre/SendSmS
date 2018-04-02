@@ -1,4 +1,4 @@
-package com.sendmessage.sendmessage;
+package com.sendmessage.sendmessage.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.sendmessage.sendmessage.R;
 import com.sendmessage.sendmessage.bo.Contact;
 
 import java.util.List;
