@@ -1,20 +1,31 @@
 package com.sendmessage.sendmessage.bo;
 
-public class MessageBO {
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 
+/**
+ * Created by Administrateur on 03/04/2018.
+ */
+
+@Entity(tableName = "message")
+public class MessageBO  {
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo
     private String contenu;
-
-    public MessageBO() {
-    }
-
-    public MessageBO(int id, String contenu) {
-        this.id = id;
-        this.contenu = contenu;
-    }
 
     public MessageBO(String contenu) {
         this.contenu = contenu;
+    }
+
+    @Ignore
+
+
+    public MessageBO() {
     }
 
     public int getId() {
@@ -32,5 +43,4 @@ public class MessageBO {
     public void setContenu(String contenu) {
         this.contenu = contenu;
     }
-
 }

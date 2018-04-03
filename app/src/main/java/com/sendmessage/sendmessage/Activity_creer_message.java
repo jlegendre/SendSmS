@@ -1,6 +1,8 @@
 package com.sendmessage.sendmessage;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +13,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.sendmessage.sendmessage.bo.MessageBO;
+import com.sendmessage.sendmessage.dao.AppDatabase;
 import com.sendmessage.sendmessage.dao.MessageDao;
 
 public class Activity_creer_message extends AppCompatActivity {
 
+    private AppDatabase db;
     private MessageDao dao;
     private MessageBO unMessage = new MessageBO();
     private EditText contenuMessage;
@@ -25,12 +29,21 @@ public class Activity_creer_message extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creer_message);
 
+        //parametre base de données
+        db =  Room.databaseBuilder(
+                getApplicationContext(),
+                AppDatabase.class,
+                "database.db").build();
+
+        //ajout utilisateur
+        dao = db.messageDao();
+
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setIcon(R.drawable.ic_group_work_black_24dp);
 
-        dao = new MessageDao(this);
         contenuMessage = findViewById(R.id.message);
         preenregistre = findViewById(R.id.preenregistre);
 
@@ -44,8 +57,15 @@ public class Activity_creer_message extends AppCompatActivity {
 
                 if (preenregistre.isChecked()) {
 
+                    new AsyncTask<Void, Void, Void>() {
 
-                    dao.insert(unMessage);
+                        @Override
+                        protected Void doInBackground(Void... params) {
+                            dao.insert(unMessage);
+                            return null;
+                        }
+                    }.execute();
+
                 }
 
                 Intent intent = new Intent(Activity_creer_message.this, PhoneContactActivity.class);
