@@ -1,6 +1,7 @@
 package com.sendmessage.sendmessage;
 
 import android.arch.persistence.room.Room;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -86,9 +87,20 @@ public class ListeMessageActivity extends AppCompatActivity {
 
                     @Override
                     protected void onPostExecute(Void aVoid) {
+                        adapter.clear();
                         adapter.notifyDataSetChanged();
                     }
                 }.execute();
+            }
+        });
+
+        FloatingActionButton envoyer_vers_contact = findViewById(R.id.envoyer_vers_contact);
+        envoyer_vers_contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListeMessageActivity.this, PhoneContactActivity.class);
+                intent.putExtra("message", messageObject.getContenu().toString());
+                startActivity(intent);
             }
         });
 
