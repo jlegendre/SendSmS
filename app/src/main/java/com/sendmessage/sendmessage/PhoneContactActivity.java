@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -33,6 +34,8 @@ public class PhoneContactActivity extends AppCompatActivity {
 
     // Request code for READ_CONTACTS. It can be any number > 0.
     private static final int PERMISSIONS_REQUEST_READ_CONTACTS = 100;
+    // Request code for READ_CONTACTS. It can be any number > 0.
+    private static final int PERMISSIONS_REQUEST_SEND_SMS = 90;
 
 
     @Override
@@ -42,7 +45,6 @@ public class PhoneContactActivity extends AppCompatActivity {
         // Find the list view
         lstNames = findViewById(R.id.idListePhoneContact);
         envoyersms = findViewById(R.id.envoyer_sms);
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);
         showContacts();
 
     }
@@ -55,19 +57,30 @@ public class PhoneContactActivity extends AppCompatActivity {
         envoyersms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(contactList.size() >=1 ){
-                    for (Contact contact : contactList) {
-                        try {
-                            Log.i("info", "id :" + contact.getId() +"\n nom : "+contact.getPrenomContact());
-                            sendSMS(contact.getNumero(), getIntent().getStringExtra("message"));
-                            Toast.makeText(v.getContext(), "Message Envoyé : "+ getIntent().getStringExtra("message"), Toast.LENGTH_SHORT).show();
-                        } catch (Exception e) {
-                            e.getCause();
-                        }
-                    }
+
+                if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(PhoneContactActivity.this, new String[]{Manifest.permission.SEND_SMS}, PERMISSIONS_REQUEST_SEND_SMS);
+
                 }else{
-                    Toast.makeText(v.getContext(), "Vous devez sélectionnez au moins un contact.", Toast.LENGTH_SHORT).show();
+
+                    if(contactList.size() >=1 ){
+                        for (Contact contact : contactList) {
+                            try {
+                                Log.i("info", "id :" + contact.getId() +"\n nom : "+contact.getPrenomContact());
+                                sendSMS(contact.getNumero(), getIntent().getStringExtra("message"));
+                                Toast.makeText(v.getContext(), "Message Envoyé : "+ getIntent().getStringExtra("message"), Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                e.getCause();
+                            }
+                        }
+                    }else{
+                        Toast.makeText(v.getContext(), "Vous devez sélectionnez au moins un contact.", Toast.LENGTH_SHORT).show();
+                    }
+                    //Toast.makeText(v.getContext(), "pas les droits ", Toast.LENGTH_SHORT).show();
                 }
+
+
+
 
             }
         });
@@ -79,7 +92,7 @@ public class PhoneContactActivity extends AppCompatActivity {
     private void showContacts() {
         // Check the SDK version and whether the permission is already granted or not.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_CONTACTS}, PERMISSIONS_REQUEST_READ_CONTACTS);
             //After this point you wait for callback in onRequestPermissionsResult(int, String[], int[]) overriden method
         } else {
             // Android version is lesser than 6.0 or the permission is already granted.
@@ -104,6 +117,9 @@ public class PhoneContactActivity extends AppCompatActivity {
                 }
             });
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(PhoneContactActivity.this, new String[]{Manifest.permission.SEND_SMS}, PERMISSIONS_REQUEST_SEND_SMS);
+        }
     }
 
     private void sendSMS(String phoneNumber, String message) {
@@ -116,14 +132,16 @@ public class PhoneContactActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSIONS_REQUEST_READ_CONTACTS) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission is granted
                 showContacts();
             } else {
                 Toast.makeText(this, "Until you grant the permission, we canot display the names", Toast.LENGTH_SHORT).show();
             }
         }
+
     }
 
     /**

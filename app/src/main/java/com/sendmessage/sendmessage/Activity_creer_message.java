@@ -18,27 +18,26 @@ public class Activity_creer_message extends AppCompatActivity {
     private MessageDao dao;
     private MessageBO unMessage = new MessageBO();
     private EditText contenuMessage;
+    private CheckBox preenregistre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creer_message);
         dao = new MessageDao(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
+        contenuMessage = findViewById(R.id.message);
+        preenregistre = findViewById(R.id.preenregistre);
 
         final FloatingActionButton envoyerVersContact = findViewById(R.id.envoyerVersContact);
-        contenuMessage = findViewById(R.id.message);
-        final CheckBox preenregistre = findViewById(R.id.preenregistre);
+
         envoyerVersContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                unMessage.setContenu(contenuMessage.getText().toString());
+
                 if (preenregistre.isChecked()) {
-                    unMessage.setContenu(contenuMessage.getText().toString());
+
 
                     dao.insert(unMessage);
                 }
@@ -49,6 +48,15 @@ public class Activity_creer_message extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+
 
 
     }
