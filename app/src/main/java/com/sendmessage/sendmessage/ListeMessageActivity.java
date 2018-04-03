@@ -24,6 +24,7 @@ public class ListeMessageActivity extends AppCompatActivity {
     private MessageDao dao;
     private ListView lstMessage;
     private List<String> listStrMessages;
+    List<MessageBO> messages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,20 +54,23 @@ public class ListeMessageActivity extends AppCompatActivity {
 
             @Override
             protected Void doInBackground(Void... params) {
-                List<MessageBO> messages = dao.getAll();
+                messages = dao.getAll();
                 if (messages.size() > 0) {
                     for (MessageBO message : messages) {
                         listStrMessages.add(message.getContenu());
                     }
-                } else {
-                    Toast.makeText(ListeMessageActivity.this, "Vous n'avez pas encore de messages pré-enregistré", Toast.LENGTH_SHORT).show();
                 }
-
-                ArrayAdapter adapter = new ArrayAdapter(ListeMessageActivity.this, android.R.layout.simple_list_item_1, listStrMessages);
-                lstMessage.setAdapter(adapter);
                 return null;
             }
 
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                if (messages.size() < 1) {
+                    Toast.makeText(ListeMessageActivity.this, "Vous n'avez pas encore de messages pré-enregistré", Toast.LENGTH_SHORT).show();
+                }
+                ArrayAdapter adapter = new ArrayAdapter(ListeMessageActivity.this, android.R.layout.simple_list_item_1, listStrMessages);
+                lstMessage.setAdapter(adapter);
+            }
         }.execute();
     }
 

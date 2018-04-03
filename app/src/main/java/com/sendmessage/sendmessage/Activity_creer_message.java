@@ -66,13 +66,16 @@ public class Activity_creer_message extends AppCompatActivity {
                             dao.insert(unMessage);
                             return null;
                         }
+
+                        @Override
+                        protected void onPostExecute(Void aVoid) {
+                            Intent intent = new Intent(Activity_creer_message.this, PhoneContactActivity.class);
+                            intent.putExtra("message", contenuMessage.getText().toString());
+                            startActivity(intent);
+                        }
                     }.execute();
 
                 }
-
-                Intent intent = new Intent(Activity_creer_message.this, PhoneContactActivity.class);
-                intent.putExtra("message", contenuMessage.getText().toString());
-                startActivity(intent);
 
             }
         });
