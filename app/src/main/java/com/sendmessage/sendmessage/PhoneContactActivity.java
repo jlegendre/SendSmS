@@ -39,7 +39,7 @@ public class PhoneContactActivity extends AppCompatActivity {
         setContentView(R.layout.activity_phone_contact);
 
         //autoriser l'envoi de sms
-        ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.SEND_SMS }, 1);
+        //ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.SEND_SMS }, 1);
     }
 
     @Override
