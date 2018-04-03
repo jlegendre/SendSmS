@@ -75,7 +75,16 @@ public class ListeMessageActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dao.delete(messageObject);
+                new AsyncTask<Void, Void, Void>() {
+
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        dao.delete(messageObject);
+                        return null;
+                    }
+
+                   
+                }.execute();
             }
         });
 
