@@ -42,6 +42,12 @@ public class PhoneContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_contact);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_group_work_black_24dp);
+
         // Find the list view
         lstNames = findViewById(R.id.idListePhoneContact);
         envoyersms = findViewById(R.id.envoyer_sms);
@@ -80,7 +86,8 @@ public class PhoneContactActivity extends AppCompatActivity {
                 }
 
 
-
+                // fermer l'activity en cours et revenir à l'ecran de creation
+                finish();
 
             }
         });

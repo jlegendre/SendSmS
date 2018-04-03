@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".DetailArticleActivity">
+
+
+    <!--<item android:id="@+id/action_sms" android:title="SMS article"
+        app:showAsAction="always" android:icon="@android:drawable/sym_action_email" />
+
+    <item android:id="@+id/about" android:icon="@android:drawable/ic_dialog_info"
+        app:showAsAction="never" android:title="About"/>
+    <item android:id="@+id/settings" android:icon="@android:drawable/ic_dialog_info"
+        app:showAsAction="never" android:title="Settings"/>-->
+    <!--<item android:id="@+id/idEditDetail" android:icon="@drawable/ic_border_color_black_24dp"
+        app:showAsAction="always" android:title="Settings"/>-->
+
+
+</menu>
+

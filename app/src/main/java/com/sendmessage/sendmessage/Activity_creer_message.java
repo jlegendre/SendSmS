@@ -24,6 +24,12 @@ public class Activity_creer_message extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creer_message);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_group_work_black_24dp);
+
         dao = new MessageDao(this);
         contenuMessage = findViewById(R.id.message);
         preenregistre = findViewById(R.id.preenregistre);
