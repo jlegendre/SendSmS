@@ -50,7 +50,8 @@
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
             android:textColor="@color/colorGreen"
-            android:text="Message pré-enregistrée"/>
+            android:text="Message pré-enregistrée"
+            android:onClick="listeMessagePreEnregistrer"/>
 
         <Button
             android:id="@+id/creerMessage"

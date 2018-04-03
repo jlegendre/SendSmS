@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sendmessage.sendmessage">
 
-
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -26,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PhoneContactActivity" />
-        <activity android:name=".Activity_creer_message"></activity>
+        <activity android:name=".Activity_creer_message" />
+        <activity android:name=".ListeMessageActivity"></activity>
     </application>
 
 </manifest>

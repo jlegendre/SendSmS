@@ -51,7 +51,7 @@
                 android:id="@+id/preenregistre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Devenir un message pré-enregistrée"/>
+                android:text="Pré-enregistrée votre message"/>
 
         </LinearLayout>
     </LinearLayout>

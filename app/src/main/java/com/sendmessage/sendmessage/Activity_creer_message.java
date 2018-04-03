@@ -39,7 +39,7 @@ public class Activity_creer_message extends AppCompatActivity {
 
                 if (preenregistre.isChecked()) {
                     unMessage.setContenu(contenuMessage.getText().toString());
-                    //todo ajouter insertion bdd
+
                     dao.insert(unMessage);
                 }
 

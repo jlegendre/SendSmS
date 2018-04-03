@@ -28,4 +28,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void listeMessagePreEnregistrer(View view) {
+        Intent intent = new Intent(MainActivity.this, ListeMessageActivity.class);
+        startActivity(intent);
+    }
 }
