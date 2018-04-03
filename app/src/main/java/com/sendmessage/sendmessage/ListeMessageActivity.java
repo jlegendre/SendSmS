@@ -29,6 +29,7 @@ public class ListeMessageActivity extends AppCompatActivity {
     private MessageDao dao;
     private ListView lstMessage;
     private MessageBO messageObject = null;
+    private MessageAdapter adapter;
     List<MessageBO> messages;
 
     @Override
@@ -66,7 +67,7 @@ public class ListeMessageActivity extends AppCompatActivity {
                 if (messages.size() < 1) {
                     Toast.makeText(ListeMessageActivity.this, "Vous n'avez pas encore de messages pré-enregistré", Toast.LENGTH_SHORT).show();
                 }
-                MessageAdapter adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
+                adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
                 lstMessage.setAdapter(adapter);
             }
         }.execute();
@@ -83,7 +84,10 @@ public class ListeMessageActivity extends AppCompatActivity {
                         return null;
                     }
 
-                   
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        adapter.notifyDataSetChanged();
+                    }
                 }.execute();
             }
         });
