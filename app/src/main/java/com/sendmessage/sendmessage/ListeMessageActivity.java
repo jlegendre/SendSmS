@@ -2,14 +2,19 @@ package com.sendmessage.sendmessage;
 
 import android.arch.persistence.room.Room;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.sendmessage.sendmessage.adapter.ContactAdapter;
+import com.sendmessage.sendmessage.adapter.MessageAdapter;
 import com.sendmessage.sendmessage.bo.Contact;
 import com.sendmessage.sendmessage.bo.MessageBO;
 import com.sendmessage.sendmessage.dao.AppDatabase;
@@ -23,7 +28,7 @@ public class ListeMessageActivity extends AppCompatActivity {
     private AppDatabase db;
     private MessageDao dao;
     private ListView lstMessage;
-    private List<String> listStrMessages;
+    private MessageBO messageObject = null;
     List<MessageBO> messages;
 
     @Override
@@ -39,8 +44,6 @@ public class ListeMessageActivity extends AppCompatActivity {
 
         lstMessage = findViewById(R.id.idListeMessage);
 
-        listStrMessages = new ArrayList<String>();
-
         //parametre base de données
         db = Room.databaseBuilder(
                 getApplicationContext(),
@@ -55,11 +58,6 @@ public class ListeMessageActivity extends AppCompatActivity {
             @Override
             protected Void doInBackground(Void... params) {
                 messages = dao.getAll();
-                if (messages.size() > 0) {
-                    for (MessageBO message : messages) {
-                        listStrMessages.add(message.getContenu());
-                    }
-                }
                 return null;
             }
 
@@ -68,10 +66,35 @@ public class ListeMessageActivity extends AppCompatActivity {
                 if (messages.size() < 1) {
                     Toast.makeText(ListeMessageActivity.this, "Vous n'avez pas encore de messages pré-enregistré", Toast.LENGTH_SHORT).show();
                 }
-                ArrayAdapter adapter = new ArrayAdapter(ListeMessageActivity.this, android.R.layout.simple_list_item_1, listStrMessages);
+                MessageAdapter adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
                 lstMessage.setAdapter(adapter);
             }
         }.execute();
+
+        FloatingActionButton delete = findViewById(R.id.delete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dao.delete(messageObject);
+            }
+        });
+
+        lstMessage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MessageBO messageBO = (MessageBO) parent.getItemAtPosition(position);
+
+                ImageView validate = parent.getChildAt(position).findViewById(R.id.validate_message);
+
+                for (int i=0; i<parent.getChildCount(); i++) {
+                    ImageView validate2 = parent.getChildAt(i).findViewById(R.id.validate_message);
+                    validate2.setVisibility(View.INVISIBLE);
+                }
+
+                messageObject = messageBO;
+                validate.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
 
