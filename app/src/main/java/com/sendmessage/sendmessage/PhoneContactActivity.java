@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -37,7 +38,8 @@ public class PhoneContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_contact);
 
-
+        //autoriser l'envoi de sms
+        ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.SEND_SMS }, 1);
     }
 
     @Override
