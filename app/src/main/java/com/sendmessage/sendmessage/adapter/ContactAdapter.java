@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sendmessage.sendmessage.R;
@@ -37,7 +38,6 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
         TextView txtContactName;
         TextView txtNumero;
 
-
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(res, parent, false);
@@ -50,6 +50,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
         txtContactName.setText(contact.getPrenomContact());
         txtNumero.setText(contact.getNumero());
+
 
         return convertView;
     }
