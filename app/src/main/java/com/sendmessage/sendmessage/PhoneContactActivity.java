@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -64,22 +65,22 @@ public class PhoneContactActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(PhoneContactActivity.this, new String[]{Manifest.permission.SEND_SMS}, PERMISSIONS_REQUEST_SEND_SMS);
 
-                }else{
+                } else {
 
-                    if(contactList.size() >=1 ){
+                    if (contactList.size() >= 1) {
                         for (Contact contact : contactList) {
                             try {
-                                Log.i("info", "id :" + contact.getId() +"\n nom : "+contact.getPrenomContact());
+                                Log.i("info", "id :" + contact.getId() + "\n nom : " + contact.getPrenomContact());
                                 sendSMS(contact.getNumero(), getIntent().getStringExtra("message"));
-                                Toast.makeText(v.getContext(), "Message Envoyé : "+ getIntent().getStringExtra("message"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(v.getContext(), "Message Envoyé : " + getIntent().getStringExtra("message"), Toast.LENGTH_SHORT).show();
                             } catch (Exception e) {
                                 e.getCause();
                             }
                         }
-                    }else{
+                    } else {
                         Toast.makeText(v.getContext(), "Vous devez sélectionnez au moins un contact.", Toast.LENGTH_SHORT).show();
                     }
                     //Toast.makeText(v.getContext(), "pas les droits ", Toast.LENGTH_SHORT).show();
@@ -190,4 +191,17 @@ public class PhoneContactActivity extends AppCompatActivity {
         return contacts;
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case android.R.id.home:
+                Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
+

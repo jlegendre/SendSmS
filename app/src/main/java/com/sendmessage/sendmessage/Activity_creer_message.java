@@ -7,10 +7,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.sendmessage.sendmessage.bo.MessageBO;
 import com.sendmessage.sendmessage.dao.AppDatabase;
@@ -82,8 +84,17 @@ public class Activity_creer_message extends AppCompatActivity {
         super.onResume();
 
 
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-
+        switch (id) {
+            case android.R.id.home:
+                Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

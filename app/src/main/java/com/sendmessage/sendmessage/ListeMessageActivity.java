@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -67,5 +68,18 @@ public class ListeMessageActivity extends AppCompatActivity {
             }
 
         }.execute();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case android.R.id.home:
+                Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
