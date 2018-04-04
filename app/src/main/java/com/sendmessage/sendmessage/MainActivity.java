@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         switch (id) {
             case android.R.id.home:
-                Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
                 onBackPressed();
         }
         return super.onOptionsItemSelected(item);

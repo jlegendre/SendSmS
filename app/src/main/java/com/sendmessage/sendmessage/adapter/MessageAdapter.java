@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.sendmessage.sendmessage.R;
-import com.sendmessage.sendmessage.bo.Contact;
 import com.sendmessage.sendmessage.bo.MessageBO;
 
 import java.util.List;

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -198,7 +197,6 @@ public class PhoneContactActivity extends AppCompatActivity {
 
         switch (id) {
             case android.R.id.home:
-                Toast.makeText(this, "HOME", Toast.LENGTH_SHORT).show();
                 onBackPressed();
         }
         return super.onOptionsItemSelected(item);
