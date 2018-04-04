@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sendmessage.sendmessage.R;
@@ -35,6 +36,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         TextView txtContactName;
+        ImageView imageViewValidate;
         TextView txtNumero;
 
         if(convertView == null){
@@ -46,9 +48,11 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
         txtContactName = (TextView) convertView.findViewById(R.id.idContactName);
         txtNumero = (TextView) convertView.findViewById(R.id.idNumero);
+        imageViewValidate = (ImageView) convertView.findViewById(R.id.validate);
 
         txtContactName.setText(contact.getPrenomContact());
         txtNumero.setText(contact.getNumero());
+        imageViewValidate.setVisibility(contact.isValidate() ? View.VISIBLE : View.GONE);
 
 
         return convertView;

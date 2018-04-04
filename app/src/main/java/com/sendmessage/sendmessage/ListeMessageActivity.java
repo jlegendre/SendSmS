@@ -79,8 +79,12 @@ public class ListeMessageActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+
                 AlertDialog diaBox = AskOption();
-                diaBox.show();
+                if(diaBox != null){
+                    diaBox.show();
+                }
+
             }
         });
 
@@ -125,45 +129,50 @@ public class ListeMessageActivity extends AppCompatActivity {
     }
 
 
-    private AlertDialog AskOption()
-    {
-        final AlertDialog myQuittingDialogBox =new AlertDialog.Builder(this)
-                //set message, title, and icon
-                .setTitle("Delete")
-                .setMessage("Do you want to Delete")
-                .setIcon(R.drawable.ic_delete_forever_black_24dp)
+    private AlertDialog AskOption() {
+        if (messageObject != null) {
+            final AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
+                    //set message, title, and icon
+                    .setTitle("Delete")
+                    .setMessage("Do you want to Delete")
+                    .setIcon(R.drawable.ic_delete_forever_black_24dp)
 
-                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        new AsyncTask<Void, Void, Void>() {
+                    .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new AsyncTask<Void, Void, Void>() {
 
-                            @Override
-                            protected Void doInBackground(Void... params) {
-                                dao.delete(messageObject);
-                                messages = dao.getAll();
-                                return null;
-                            }
+                                @Override
+                                protected Void doInBackground(Void... params) {
+                                    dao.delete(messageObject);
+                                    messages = dao.getAll();
+                                    return null;
+                                }
 
-                            @Override
-                            protected void onPostExecute(Void aVoid) {
-                                Toast.makeText(ListeMessageActivity.this, "Suppression réussite", Toast.LENGTH_SHORT).show();
-                                adapter.clear();
-                                adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
-                                lstMessage.setAdapter(adapter);
-                            }
-                        }.execute();
-                    }
-                })
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create();
+                                @Override
+                                protected void onPostExecute(Void aVoid) {
+                                    Toast.makeText(ListeMessageActivity.this, "Suppression réussite", Toast.LENGTH_SHORT).show();
+                                    adapter.clear();
+                                    adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
+                                    lstMessage.setAdapter(adapter);
+                                }
+                            }.execute();
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).create();
 
 
-        return myQuittingDialogBox;
+            return myQuittingDialogBox;
+        } else {
+            Toast.makeText(this, "Vous devez d'abord sélectionner un élement pour le supprimer.", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+
 
     }
 

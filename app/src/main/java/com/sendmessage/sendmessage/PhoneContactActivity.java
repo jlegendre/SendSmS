@@ -25,6 +25,8 @@ import com.sendmessage.sendmessage.bo.Contact;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.String.valueOf;
+
 public class PhoneContactActivity extends AppCompatActivity {
 
     // The ListView
@@ -104,7 +106,7 @@ public class PhoneContactActivity extends AppCompatActivity {
         } else {
             // Android version is lesser than 6.0 or the permission is already granted.
             List<Contact> contacts = getContactNames();
-            ContactAdapter adapter = new ContactAdapter(this, R.layout.adapter_contact, contacts);
+            final ContactAdapter adapter = new ContactAdapter(this, R.layout.adapter_contact, contacts);
             lstNames.setAdapter(adapter);
 
             lstNames.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -112,14 +114,13 @@ public class PhoneContactActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Contact contact = (Contact) parent.getItemAtPosition(position);
 
-                    ImageView validate = parent.getChildAt(position).findViewById(R.id.validate);
+                    contact.setValidate(! contact.isValidate());
+                    adapter.notifyDataSetChanged();
 
                     if (contactList.contains(contact)) {
                         contactList.remove(contact);
-                        validate.setVisibility(View.INVISIBLE);
                     } else {
                         contactList.add(contact);
-                        validate.setVisibility(View.VISIBLE);
                     }
                 }
             });
