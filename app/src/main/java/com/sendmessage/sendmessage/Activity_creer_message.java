@@ -55,7 +55,7 @@ public class Activity_creer_message extends AppCompatActivity {
 
         envoyerVersContact.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
 
                 unMessage.setContenu(contenuMessage.getText().toString());
 
@@ -71,14 +71,28 @@ public class Activity_creer_message extends AppCompatActivity {
 
                     @Override
                     protected void onPostExecute(Void aVoid) {
-                        Intent intent = new Intent(Activity_creer_message.this, PhoneContactActivity.class);
-                        intent.putExtra("message", contenuMessage.getText().toString());
-                        startActivity(intent);
+                        if(isEmpty(contenuMessage)){
+                            Toast.makeText(v.getContext(), "Veuillez saisir un message.", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Intent intent = new Intent(Activity_creer_message.this, PhoneContactActivity.class);
+                            intent.putExtra("message", contenuMessage.getText().toString());
+                            startActivity(intent);
+                        }
+
                     }
                 }.execute();
             }
         });
 
+
+
+    }
+
+    private boolean isEmpty(EditText etText) {
+        if (etText.getText().toString().trim().length() > 0)
+            return false;
+
+        return true;
     }
 
 
