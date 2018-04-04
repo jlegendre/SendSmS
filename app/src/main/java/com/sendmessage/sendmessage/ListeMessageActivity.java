@@ -82,13 +82,15 @@ public class ListeMessageActivity extends AppCompatActivity {
                     @Override
                     protected Void doInBackground(Void... params) {
                         dao.delete(messageObject);
+                        messages = dao.getAll();
                         return null;
                     }
 
                     @Override
                     protected void onPostExecute(Void aVoid) {
                         adapter.clear();
-                        adapter.notifyDataSetChanged();
+                        adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
+                        lstMessage.setAdapter(adapter);
                     }
                 }.execute();
             }
