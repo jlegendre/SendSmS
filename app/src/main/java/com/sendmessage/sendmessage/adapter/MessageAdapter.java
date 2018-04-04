@@ -3,6 +3,7 @@ package com.sendmessage.sendmessage.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,8 +45,13 @@ public class MessageAdapter extends ArrayAdapter<MessageBO> {
         MessageBO message = maliste.get(position);
 
         txtContenu = (TextView) convertView.findViewById(R.id.contenu_message);
+        Log.i("taille", String.valueOf(message.getContenu().length()));
+        if(message.getContenu().length() > 55){
+            txtContenu.setText(message.getContenu().substring(0, 50).concat(" ..."));
+        }else{
+            txtContenu.setText(message.getContenu());
+        }
 
-        txtContenu.setText(message.getContenu());
 
 
         return convertView;
