@@ -11,6 +11,16 @@
     </ListView>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/delete"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="100dp" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/envoyer_vers_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,15 +29,5 @@
         android:src="@drawable/suivant"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="20dp"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/delete"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="70dp" />
 
 </RelativeLayout>
