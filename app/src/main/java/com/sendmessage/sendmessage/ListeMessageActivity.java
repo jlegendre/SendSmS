@@ -131,7 +131,7 @@ public class ListeMessageActivity extends AppCompatActivity {
                 //set message, title, and icon
                 .setTitle("Delete")
                 .setMessage("Do you want to Delete")
-                .setIcon(R.drawable.delete)
+                .setIcon(R.drawable.ic_delete_forever_black_24dp)
 
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
