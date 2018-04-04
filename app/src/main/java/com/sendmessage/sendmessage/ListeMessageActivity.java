@@ -92,9 +92,14 @@ public class ListeMessageActivity extends AppCompatActivity {
         envoyer_vers_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ListeMessageActivity.this, PhoneContactActivity.class);
-                intent.putExtra("message", messageObject.getContenu().toString());
-                startActivity(intent);
+                if(messageObject != null){
+                    Intent intent = new Intent(ListeMessageActivity.this, PhoneContactActivity.class);
+                    intent.putExtra("message", messageObject.getContenu().toString());
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(v.getContext(), "Vous devez sélectionnez un message.", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
