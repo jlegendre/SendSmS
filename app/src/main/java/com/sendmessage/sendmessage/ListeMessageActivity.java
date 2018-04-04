@@ -79,29 +79,12 @@ public class ListeMessageActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                new AsyncTask<Void, Void, Void>() {
-
-                    @Override
-                    protected Void doInBackground(Void... params) {
-                        AlertDialog diaBox = AskOption();
-                        diaBox.show();
-                        return null;
-                    }
-
-                    @Override
-                    protected void onPostExecute(Void aVoid) {
-                        Toast.makeText(v.getContext(), "Suppression réussite", Toast.LENGTH_SHORT).show();
-                        adapter.clear();
-                        adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
-                        lstMessage.setAdapter(adapter);
-                    }
-                }.execute();
+                AlertDialog diaBox = AskOption();
+                diaBox.show();
             }
         });
 
         FloatingActionButton envoyer_vers_contact = findViewById(R.id.envoyer_vers_contact);
-
-
         envoyer_vers_contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,8 +136,23 @@ public class ListeMessageActivity extends AppCompatActivity {
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dao.delete(messageObject);
-                        messages = dao.getAll();
+                        new AsyncTask<Void, Void, Void>() {
+
+                            @Override
+                            protected Void doInBackground(Void... params) {
+                                dao.delete(messageObject);
+                                messages = dao.getAll();
+                                return null;
+                            }
+
+                            @Override
+                            protected void onPostExecute(Void aVoid) {
+                                Toast.makeText(ListeMessageActivity.this, "Suppression réussite", Toast.LENGTH_SHORT).show();
+                                adapter.clear();
+                                adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
+                                lstMessage.setAdapter(adapter);
+                            }
+                        }.execute();
                     }
                 })
                 .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
