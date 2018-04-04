@@ -1,6 +1,8 @@
 package com.sendmessage.sendmessage;
 
+import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
@@ -32,7 +34,7 @@ public class Activity_creer_message extends AppCompatActivity {
         setContentView(R.layout.activity_creer_message);
 
         //parametre base de données
-        db =  Room.databaseBuilder(
+        db = Room.databaseBuilder(
                 getApplicationContext(),
                 AppDatabase.class,
                 "database.db").build();
@@ -57,30 +59,29 @@ public class Activity_creer_message extends AppCompatActivity {
 
                 unMessage.setContenu(contenuMessage.getText().toString());
 
-                if (preenregistre.isChecked()) {
+                new AsyncTask<Void, Void, Void>() {
 
-                    new AsyncTask<Void, Void, Void>() {
-
-                        @Override
-                        protected Void doInBackground(Void... params) {
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        if (preenregistre.isChecked()) {
                             dao.insert(unMessage);
-                            return null;
                         }
+                        return null;
+                    }
 
-                        @Override
-                        protected void onPostExecute(Void aVoid) {
-                            Intent intent = new Intent(Activity_creer_message.this, PhoneContactActivity.class);
-                            intent.putExtra("message", contenuMessage.getText().toString());
-                            startActivity(intent);
-                        }
-                    }.execute();
-
-                }
-
+                    @Override
+                    protected void onPostExecute(Void aVoid) {
+                        Intent intent = new Intent(Activity_creer_message.this, PhoneContactActivity.class);
+                        intent.putExtra("message", contenuMessage.getText().toString());
+                        startActivity(intent);
+                    }
+                }.execute();
             }
         });
 
     }
+
+
 
     @Override
     protected void onResume() {
