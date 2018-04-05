@@ -108,14 +108,16 @@ public class ListeMessageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MessageBO messageBO = (MessageBO) parent.getItemAtPosition(position);
 
-                messageBO.setValidate(! messageBO.isValidate());
-                adapter.notifyDataSetChanged();
-
                 if (messageBO.equals(messageObject)) {
                     messageObject = null;
+                    messageBO.setValidate(false);
                 } else {
                     messageObject = messageBO;
+                    messageBO.setValidate(true);
                 }
+
+                messageBO.setValidate(! messageBO.isValidate());
+                adapter.notifyDataSetChanged();
             }
         });
     }
