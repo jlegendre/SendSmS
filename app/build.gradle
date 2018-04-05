@@ -34,4 +34,5 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
     // Paging
     implementation "android.arch.paging:runtime:1.0.0-alpha7"
+    implementation 'com.google.android.gms:play-services-ads:7.5.0'
 }
