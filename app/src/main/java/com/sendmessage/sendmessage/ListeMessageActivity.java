@@ -69,9 +69,10 @@ public class ListeMessageActivity extends AppCompatActivity {
             protected void onPostExecute(Void aVoid) {
                 if (messages.size() < 1) {
                     Toast.makeText(ListeMessageActivity.this, "Vous n'avez pas encore de messages pré-enregistré", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
+                    lstMessage.setAdapter(adapter);
                 }
-                adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
-                lstMessage.setAdapter(adapter);
             }
         }.execute();
 
@@ -108,15 +109,19 @@ public class ListeMessageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MessageBO messageBO = (MessageBO) parent.getItemAtPosition(position);
 
-                if (messageBO.equals(messageObject)) {
-                    messageObject = null;
-                    messageBO.setValidate(false);
-                } else {
-                    messageObject = messageBO;
-                    messageBO.setValidate(true);
+                messageBO.setValidate(! messageBO.isValidate());
+
+                if (messageObject != null) {
+                    messageObject.setValidate(! messageObject.isValidate());
                 }
 
-                messageBO.setValidate(! messageBO.isValidate());
+                if (messageBO.equals(messageObject)) {
+                    messageObject.setValidate(! messageObject.isValidate());
+                    messageObject = null;
+                } else {
+                    messageObject = messageBO;
+                }
+
                 adapter.notifyDataSetChanged();
             }
         });
