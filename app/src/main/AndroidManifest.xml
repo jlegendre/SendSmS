@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PhoneContactActivity" />
-        <activity android:name=".Activity_creer_message" />
+        <activity android:name=".CreateMessageActivity" />
         <activity android:name=".ListeMessageActivity"></activity>
     </application>
 

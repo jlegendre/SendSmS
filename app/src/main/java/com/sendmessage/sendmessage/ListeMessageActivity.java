@@ -108,15 +108,16 @@ public class ListeMessageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MessageBO messageBO = (MessageBO) parent.getItemAtPosition(position);
 
-                ImageView validate = parent.getChildAt(position).findViewById(R.id.validate_message);
+//                ImageView validate = parent.getChildAt(position).findViewById(R.id.validate_message);
 
-                for (int i=0; i<parent.getChildCount(); i++) {
+                messageBO.setValidate(! messageBO.isValidate());
+                adapter.notifyDataSetChanged();
+                /*for (int i=0; i<parent.getChildCount(); i++) {
                     ImageView validate2 = parent.getChildAt(i).findViewById(R.id.validate_message);
                     validate2.setVisibility(View.INVISIBLE);
-                }
+                }*/
 
                 messageObject = messageBO;
-                validate.setVisibility(View.VISIBLE);
             }
         });
     }

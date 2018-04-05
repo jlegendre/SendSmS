@@ -17,6 +17,7 @@ public class Contact implements Serializable{
     private String numero;
     private String nomContact;
     private String prenomContact;
+    private boolean validate;
 
     public boolean isValidate() {
         return validate;
@@ -26,7 +27,7 @@ public class Contact implements Serializable{
         this.validate = validate;
     }
 
-    private boolean validate;
+
 
     public Contact(int id, String numero, String nomContact, String prenomContact) {
         this.id = id;
