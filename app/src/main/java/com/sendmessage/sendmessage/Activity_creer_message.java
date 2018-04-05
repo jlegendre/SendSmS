@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.sendmessage.sendmessage.bo.MessageBO;
@@ -26,7 +27,7 @@ public class Activity_creer_message extends AppCompatActivity {
     private MessageDao dao;
     private MessageBO unMessage = new MessageBO();
     private EditText contenuMessage;
-    private CheckBox preenregistre;
+    private Switch preenregistre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
