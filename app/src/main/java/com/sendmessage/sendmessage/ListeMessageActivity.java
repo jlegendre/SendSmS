@@ -111,12 +111,11 @@ public class ListeMessageActivity extends AppCompatActivity {
 
                 messageBO.setValidate(! messageBO.isValidate());
 
-                if (messageObject != null) {
+                if (messageObject != null && !messageBO.equals(messageObject)) {
                     messageObject.setValidate(! messageObject.isValidate());
                 }
 
                 if (messageBO.equals(messageObject)) {
-                    messageObject.setValidate(! messageObject.isValidate());
                     messageObject = null;
                 } else {
                     messageObject = messageBO;
