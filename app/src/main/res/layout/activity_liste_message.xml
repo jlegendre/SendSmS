@@ -18,6 +18,7 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/delete"
         android:layout_marginRight="16dp"
+        android:backgroundTint="@color/colorPurple"
         android:layout_marginBottom="100dp" />
 
     <android.support.design.widget.FloatingActionButton
@@ -28,6 +29,7 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/suivant"
         android:layout_marginRight="16dp"
+        android:backgroundTint="@color/colorPurple"
         android:layout_marginBottom="20dp"/>
 
 </RelativeLayout>

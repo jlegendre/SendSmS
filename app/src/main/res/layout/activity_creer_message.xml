@@ -63,5 +63,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:src="@drawable/suivant"
+        android:backgroundTint="@color/colorPurple"
         android:layout_margin="16dp" />
 </RelativeLayout>
