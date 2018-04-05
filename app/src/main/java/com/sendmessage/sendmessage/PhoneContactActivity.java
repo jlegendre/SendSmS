@@ -81,6 +81,9 @@ public class PhoneContactActivity extends AppCompatActivity {
                                 e.getCause();
                             }
                         }
+
+                        // fermer l'activity en cours et revenir à l'ecran de creation
+                        finish();
                     } else {
                         Toast.makeText(v.getContext(), "Vous devez sélectionnez au moins un contact.", Toast.LENGTH_SHORT).show();
                     }
@@ -88,8 +91,7 @@ public class PhoneContactActivity extends AppCompatActivity {
                 }
 
 
-                // fermer l'activity en cours et revenir à l'ecran de creation
-                finish();
+
 
             }
         });

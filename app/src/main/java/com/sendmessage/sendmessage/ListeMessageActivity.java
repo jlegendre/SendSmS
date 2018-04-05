@@ -114,7 +114,6 @@ public class ListeMessageActivity extends AppCompatActivity {
                 if (messageObject != null && !messageBO.equals(messageObject)) {
                     messageObject.setValidate(! messageObject.isValidate());
                 }
-
                 if (messageBO.equals(messageObject)) {
                     messageObject = null;
                 } else {

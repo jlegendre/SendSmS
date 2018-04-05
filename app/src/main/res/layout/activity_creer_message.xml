@@ -36,7 +36,8 @@
             <EditText
                 android:id="@+id/message"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textColorHighlight="@color/colorPurple"/>
 
         </LinearLayout>
 
@@ -51,7 +52,8 @@
                 android:id="@+id/preenregistre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Pré-enregistrée votre message"/>
+                android:text="Pré-enregistrée votre message"
+                android:theme="@style/SCBSwitch" />
 
         </LinearLayout>
     </LinearLayout>
