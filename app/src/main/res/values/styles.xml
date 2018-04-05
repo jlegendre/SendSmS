@@ -17,4 +17,12 @@
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">#b9b9b9</item>
     </style>
+
+    <style name="MyEditTextTheme">
+        <!-- Used for the bottom line when not selected / focused -->
+        <item name="colorControlNormal">@color/colorPurple</item>
+        <item name="colorAccent">@color/colorPurple</item>
+        <!-- colorControlActivated & colorControlHighlight use the colorAccent color by default -->
+    </style>
+
 </resources>

@@ -23,6 +23,8 @@ import com.sendmessage.sendmessage.adapter.ContactAdapter;
 import com.sendmessage.sendmessage.bo.Contact;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import static java.lang.String.valueOf;
@@ -188,6 +190,14 @@ public class PhoneContactActivity extends AppCompatActivity {
                 contacts.add(pContact);
             }
 
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            contacts.sort(new Comparator<Contact>() {
+                @Override
+                public int compare(Contact o1, Contact o2) {
+                    return o1.getPrenomContact().compareTo(o2.getPrenomContact());
+                }
+            });
         }
 
         return contacts;
