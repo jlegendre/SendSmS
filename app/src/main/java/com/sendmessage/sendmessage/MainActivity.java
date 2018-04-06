@@ -14,7 +14,7 @@ import com.google.android.gms.ads.AdView;
 
 public class MainActivity extends AppCompatActivity {
 
-    int backButtonCount = 0;
+    int backButtonCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         final AdView adView = (AdView) findViewById(R.id.banner);
         adView.loadAd(new AdRequest.Builder().build());
+
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        backButtonCount = 0;
         Button test = findViewById(R.id.creerMessage);
 
         test.setOnClickListener(new View.OnClickListener() {
