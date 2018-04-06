@@ -18,6 +18,8 @@ public class MessageBO  {
     @ColumnInfo
     private String contenu;
 
+    private boolean validate;
+
     public MessageBO(String contenu) {
         this.contenu = contenu;
     }
@@ -42,5 +44,13 @@ public class MessageBO  {
 
     public void setContenu(String contenu) {
         this.contenu = contenu;
+    }
+
+    public boolean isValidate() {
+        return validate;
+    }
+
+    public void setValidate(boolean validate) {
+        this.validate = validate;
     }
 }

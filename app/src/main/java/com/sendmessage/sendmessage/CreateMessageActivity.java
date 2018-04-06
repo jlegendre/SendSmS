@@ -1,32 +1,29 @@
 package com.sendmessage.sendmessage;
 
-import android.app.AlertDialog;
 import android.arch.persistence.room.Room;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.sendmessage.sendmessage.bo.MessageBO;
 import com.sendmessage.sendmessage.dao.AppDatabase;
 import com.sendmessage.sendmessage.dao.MessageDao;
 
-public class Activity_creer_message extends AppCompatActivity {
+public class CreateMessageActivity extends AppCompatActivity {
 
     private AppDatabase db;
     private MessageDao dao;
     private MessageBO unMessage = new MessageBO();
     private EditText contenuMessage;
-    private CheckBox preenregistre;
+    private Switch preenregistre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +71,7 @@ public class Activity_creer_message extends AppCompatActivity {
                         if(isEmpty(contenuMessage)){
                             Toast.makeText(v.getContext(), "Veuillez saisir un message.", Toast.LENGTH_SHORT).show();
                         }else{
-                            Intent intent = new Intent(Activity_creer_message.this, PhoneContactActivity.class);
+                            Intent intent = new Intent(CreateMessageActivity.this, PhoneContactActivity.class);
                             intent.putExtra("message", contenuMessage.getText().toString());
                             startActivity(intent);
                         }

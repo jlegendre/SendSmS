@@ -69,9 +69,10 @@ public class ListeMessageActivity extends AppCompatActivity {
             protected void onPostExecute(Void aVoid) {
                 if (messages.size() < 1) {
                     Toast.makeText(ListeMessageActivity.this, "Vous n'avez pas encore de messages pré-enregistré", Toast.LENGTH_SHORT).show();
+                } else {
+                    adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
+                    lstMessage.setAdapter(adapter);
                 }
-                adapter = new MessageAdapter(ListeMessageActivity.this, R.layout.adapter_message, messages);
-                lstMessage.setAdapter(adapter);
             }
         }.execute();
 
@@ -108,15 +109,18 @@ public class ListeMessageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 MessageBO messageBO = (MessageBO) parent.getItemAtPosition(position);
 
-                ImageView validate = parent.getChildAt(position).findViewById(R.id.validate_message);
+                messageBO.setValidate(! messageBO.isValidate());
 
-                for (int i=0; i<parent.getChildCount(); i++) {
-                    ImageView validate2 = parent.getChildAt(i).findViewById(R.id.validate_message);
-                    validate2.setVisibility(View.INVISIBLE);
+                if (messageObject != null && !messageBO.equals(messageObject)) {
+                    messageObject.setValidate(! messageObject.isValidate());
+                }
+                if (messageBO.equals(messageObject)) {
+                    messageObject = null;
+                } else {
+                    messageObject = messageBO;
                 }
 
-                messageObject = messageBO;
-                validate.setVisibility(View.VISIBLE);
+                adapter.notifyDataSetChanged();
             }
         });
     }
