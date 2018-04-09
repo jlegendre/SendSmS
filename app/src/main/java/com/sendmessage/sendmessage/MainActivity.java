@@ -1,6 +1,7 @@
 package com.sendmessage.sendmessage;
 
 import android.content.Intent;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,8 +10,10 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,14 +24,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final AdView adView = (AdView) findViewById(R.id.banner);
+       MobileAds.initialize(this,
+                "ca-app-pub-9572476281021887~4194978965");
+
+        final AdView adView = (AdView) findViewById(R.id.bannerMain);
         adView.loadAd(new AdRequest.Builder().build());
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                System.err.println("Ad failed: " + i);
+            }
+        });
 
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_group_work_black_24dp);
     }
 
     @Override

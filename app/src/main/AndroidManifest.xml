@@ -24,9 +24,8 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"
             />
-
         <activity android:name=".MainActivity"
-            android:icon="@drawable/ic_group_work_black_24dp">
+            android:icon="@drawable/ic_message_black_24dp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -63,12 +63,13 @@
             android:text="Créer votre message"/>
 
         <com.google.android.gms.ads.AdView
-            android:id="@+id/banner"
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/bannerMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
-            />
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="ca-app-pub-9572476281021887~4194978965">
+        </com.google.android.gms.ads.AdView>
 
 
     </LinearLayout>

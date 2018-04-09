@@ -19,6 +19,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.sendmessage.sendmessage.adapter.ContactAdapter;
 import com.sendmessage.sendmessage.bo.Contact;
 
@@ -50,7 +54,19 @@ public class PhoneContactActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_group_work_black_24dp);
+
+        MobileAds.initialize(this,
+                "ca-app-pub-9572476281021887~4194978965");
+
+        final AdView adView = (AdView) findViewById(R.id.bannerContact);
+        adView.loadAd(new AdRequest.Builder().build());
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(int i) {
+                super.onAdFailedToLoad(i);
+                System.err.println("Ad failed: " + i);
+            }
+        });
 
         // Find the list view
         lstNames = findViewById(R.id.idListePhoneContact);
