@@ -12,6 +12,7 @@ import android.widget.Toolbar;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         final AdView adView = (AdView) findViewById(R.id.bannerMain);
         adView.loadAd(new AdRequest.Builder().build());
+
         adView.setAdListener(new AdListener() {
             @Override
             public void onAdFailedToLoad(int i) {
