@@ -98,11 +98,17 @@ public class ListeMessageActivity extends AppCompatActivity {
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                if(messageObject != null){
+                    AlertDialog diaBox = AskOption();
+                    if(diaBox != null){
+                        diaBox.show();
+                    }
+                }else{
+                    Toast.makeText(v.getContext(), "Vous devez sélectionnez un message.", Toast.LENGTH_SHORT).show();
 
-                AlertDialog diaBox = AskOption();
-                if(diaBox != null){
-                    diaBox.show();
                 }
+
+
 
             }
         });
