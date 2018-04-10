@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sendmessage.sendmessage" android:screenOrientation="portrait" android:versionCode="2">
+    package="com.sendmessage.sendmessage" android:screenOrientation="portrait">
 
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
@@ -24,6 +24,12 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"
             />
+        <activity
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:theme="@android:style/Theme.Translucent"
+            />
+
         <activity android:name=".MainActivity"
             android:icon="@drawable/ic_message_black_24dp">
             <intent-filter>
@@ -35,11 +41,7 @@
         <activity android:name=".PhoneContactActivity" />
         <activity android:name=".CreateMessageActivity" />
         <activity android:name=".ListeMessageActivity"></activity>
-        <activity
-            android:name="com.google.android.gms.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
-            android:theme="@android:style/Theme.Translucent"
-            />
+
     </application>
 
 </manifest>

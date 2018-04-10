@@ -55,8 +55,7 @@ public class PhoneContactActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
 
-        MobileAds.initialize(this,
-                "ca-app-pub-9572476281021887~4194978965");
+        MobileAds.initialize(this, String.valueOf(R.string.clef_app));
 
         final AdView adView = (AdView) findViewById(R.id.bannerContact);
         adView.loadAd(new AdRequest.Builder().build());

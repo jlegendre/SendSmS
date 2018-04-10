@@ -53,8 +53,7 @@ public class ListeMessageActivity extends AppCompatActivity {
 
         lstMessage = findViewById(R.id.idListeMessage);
 
-        MobileAds.initialize(this,
-                "ca-app-pub-9572476281021887~4194978965");
+        MobileAds.initialize(this, String.valueOf(R.string.clef_app));
 
         final AdView adView = (AdView) findViewById(R.id.bannerMessage);
         adView.loadAd(new AdRequest.Builder().build());

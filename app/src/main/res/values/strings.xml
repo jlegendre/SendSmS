@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SendMessage</string>
+    <string name="clef_banner">ca-app-pub-9572476281021887/1744909597</string>
+    <string name="clef_banner_test">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string name="clef_app">ca-app-pub-9572476281021887~4194978965</string>
 </resources>
